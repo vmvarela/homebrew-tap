@@ -11,7 +11,6 @@ class Takeoff < Formula
 
   def install
     bin.install "bin/takeoff"
-
   end
 
   test do
