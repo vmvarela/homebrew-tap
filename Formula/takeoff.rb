@@ -1,9 +1,9 @@
 class Takeoff < Formula
   desc "Release automation for Zig projects"
   homepage "https://github.com/vmvarela/takeoff"
-  url "https://github.com/vmvarela/takeoff/releases/download/v0.3.0/takeoff-v0.3.0-macos-aarch64.tar.gz"
-  sha256 "2fb23ea2a3754a6e022c14433caa3b07a72bd9d81c66337bdb4c0f07e7eb7f58"
-  version "0.3.0"
+  url "https://github.com/vmvarela/takeoff/releases/download/v0.4.0/takeoff-v0.4.0-macos-aarch64.tar.gz"
+  sha256 "19d68cb965d4642e77abd7143b84ce273e53f80e6e68e3127375979135d9b0f0"
+  version "0.4.0"
   license "MIT"
 
   head "https://github.com/vmvarela/takeoff.git"
