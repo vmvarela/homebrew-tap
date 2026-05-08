@@ -1,34 +1,34 @@
 class SqlPipe < Formula
   desc "Read CSV from stdin, query with SQL, write CSV to stdout"
   homepage "https://github.com/vmvarela/sql-pipe"
-  version "0.8.0"
+  version "0.8.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.0/sql-pipe-aarch64-macos"
-      sha256 "c154790acaa8ecd803ae24624357c9207d3eee8d28fa98063da011a7914696ca"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.1/sql-pipe-aarch64-macos"
+      sha256 "515f055cb33e3dc4010ba0718a238c84caad894927b3e1098935f58e88aa38f4"
     end
     on_intel do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.0/sql-pipe-x86_64-macos"
-      sha256 "b53027856158de36e30dee24950fb8ed13fc41c62e878ac896fcc018b252710e"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.1/sql-pipe-x86_64-macos"
+      sha256 "65864998a713b223eb1e3d820fd4dceb5ea4e1a269c20b3bb0866d11b7fe6815"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.0/sql-pipe-aarch64-linux"
-      sha256 "9e5094a797e664e64ba080304c43e1cc4570c9ae15825a5b371f2eb0ec2231a1"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.1/sql-pipe-aarch64-linux"
+      sha256 "3bc12fe44bbd1cc4c5e1e851bf24563dd129dea7d61b5db8d535cbacc60601b3"
     end
     on_intel do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.0/sql-pipe-x86_64-linux"
-      sha256 "443ddb5dae0effe25dd6aa8ee9304eb3702166e6b9a8cc8bef0347b36b77757a"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.1/sql-pipe-x86_64-linux"
+      sha256 "ac1d61b2372e8e0cd9506247866e12cecc136c9afcc25f2e47ec8d6c1e6011f2"
     end
   end
 
   resource "man" do
-    url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.0/sql-pipe.1.gz"
-    sha256 "ada46f4b424a61a31ade96a7fc6824c10ab4587acb9b3a18061189d8e7b03c73"
+    url "https://github.com/vmvarela/sql-pipe/releases/download/v0.8.1/sql-pipe.1.gz"
+    sha256 "2c1afc632d7d086363b630260bf09875b9927648eaa0e7b3e97e0fd6c2709c25"
   end
 
   def install
