@@ -94,7 +94,7 @@ jobs:
           seen = set()
           for index, line in enumerate(lines):
               for platform in replacements:
-                  if f"_#{'{'}version{'}'}_{platform}.tar.gz" in line:
+                  if f"_#{{version}}_{platform}.tar.gz" in line:
                       target = platform
                       break
               else:
