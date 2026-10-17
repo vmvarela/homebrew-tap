@@ -1,0 +1,133 @@
+name: Update Ghoten formula
+
+on:
+  schedule:
+    - cron: "17 7 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-ghoten-formula
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Read latest stable Ghoten release
+        id: release
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          RELEASE="$(curl --fail --silent --show-error \
+            --header "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/vmvarela/ghoten/releases/latest)"
+
+          if [[ "$(jq -r '.draft' <<<"$RELEASE")" != "false" || "$(jq -r '.prerelease' <<<"$RELEASE")" != "false" ]]; then
+            echo "::error::GitHub latest release is not a stable Ghoten release."
+            exit 1
+          fi
+
+          TAG="$(jq -r '.tag_name' <<<"$RELEASE")"
+          VERSION="${TAG#v}"
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo "::error::Unexpected stable Ghoten version: $TAG"
+            exit 1
+          }
+
+          asset_digest() {
+            name=$1
+            digest="$(jq -r --arg name "$name" '.assets[] | select(.name == $name) | .digest // empty' <<<"$RELEASE")"
+            [[ "$digest" == sha256:* ]] || {
+              echo "::error::Missing SHA256 digest for $name"
+              exit 1
+            }
+            printf '%s\n' "${digest#sha256:}"
+          }
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "darwin_amd64=$(asset_digest "ghoten_${VERSION}_darwin_amd64.tar.gz")" >> "$GITHUB_OUTPUT"
+          echo "darwin_arm64=$(asset_digest "ghoten_${VERSION}_darwin_arm64.tar.gz")" >> "$GITHUB_OUTPUT"
+          echo "linux_amd64=$(asset_digest "ghoten_${VERSION}_linux_amd64.tar.gz")" >> "$GITHUB_OUTPUT"
+          echo "linux_arm64=$(asset_digest "ghoten_${VERSION}_linux_arm64.tar.gz")" >> "$GITHUB_OUTPUT"
+
+      - name: Update formula
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+          DARWIN_AMD64: ${{ steps.release.outputs.darwin_amd64 }}
+          DARWIN_ARM64: ${{ steps.release.outputs.darwin_arm64 }}
+          LINUX_AMD64: ${{ steps.release.outputs.linux_amd64 }}
+          LINUX_ARM64: ${{ steps.release.outputs.linux_arm64 }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import re
+          from pathlib import Path
+
+          path = Path("Formula/ghoten.rb")
+          text = path.read_text()
+
+          text, count = re.subn(
+              r"(?m)^  version '[^']+'$",
+              f"  version '{os.environ['VERSION']}'",
+              text,
+          )
+          if count != 1:
+              raise SystemExit(f"expected one version line, updated {count}")
+
+          replacements = {
+              "darwin_amd64": os.environ["DARWIN_AMD64"],
+              "darwin_arm64": os.environ["DARWIN_ARM64"],
+              "linux_amd64": os.environ["LINUX_AMD64"],
+              "linux_arm64": os.environ["LINUX_ARM64"],
+          }
+
+          lines = text.splitlines()
+          target = None
+          seen = set()
+          for index, line in enumerate(lines):
+              for platform in replacements:
+                  if f"_#{{version}}_{platform}.tar.gz" in line:
+                      target = platform
+                      break
+              else:
+                  if target is not None and line.strip().startswith("sha256 "):
+                      indent = line[: len(line) - len(line.lstrip())]
+                      lines[index] = f"{indent}sha256 '{replacements[target]}'"
+                      seen.add(target)
+                      target = None
+
+          missing = replacements.keys() - seen
+          if missing:
+              raise SystemExit(f"formula targets not updated: {', '.join(sorted(missing))}")
+
+          path.write_text("\n".join(lines) + "\n")
+          PY
+
+          ruby -c Formula/ghoten.rb
+          git diff --check
+
+      - name: Commit stable formula update
+        env:
+          VERSION: ${{ steps.release.outputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- Formula/ghoten.rb; then
+            echo "Formula already matches Ghoten $VERSION."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/ghoten.rb
+          git commit -m "build(deps): update Ghoten to $VERSION"
+          git push origin HEAD:master
