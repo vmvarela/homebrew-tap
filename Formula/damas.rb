@@ -1,34 +1,34 @@
 class Damas < Formula
   desc "Checkers game: CLI, TUI and embedded web server in one binary"
   homepage "https://github.com/vmvarela/damas"
-  version "0.1.8"
+  version "0.1.9"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/vmvarela/damas/releases/download/v0.1.8/damas-aarch64-macos"
-      sha256 "d756e5a2c28374d111a2a4db7844be9f41979aa7714934c0dcf614ab9080f8e7"
+      url "https://github.com/vmvarela/damas/releases/download/v0.1.9/damas-aarch64-macos"
+      sha256 "0cf376ec01fef81918cf36cf17bf3d3aa777d8d0d060670fcc48efb20ce5af1e"
     end
     on_intel do
-      url "https://github.com/vmvarela/damas/releases/download/v0.1.8/damas-x86_64-macos"
-      sha256 "772018c417d3e3715512d726f41c8d20714a577d278ef0eac6b5adc8d215aab2"
+      url "https://github.com/vmvarela/damas/releases/download/v0.1.9/damas-x86_64-macos"
+      sha256 "718f5b4dc2883d54670794d038d93504b28fd049eb9031d762d4059bd805dcd2"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vmvarela/damas/releases/download/v0.1.8/damas-aarch64-linux"
-      sha256 "ce59d33841740f9f15e5ee8f1dfa23b25a85acbdc178c674b521a2ff1cc57fc6"
+      url "https://github.com/vmvarela/damas/releases/download/v0.1.9/damas-aarch64-linux"
+      sha256 "3c4c42842822308a85dec89776e37c18dbebb9ee82d20af07fa24ebea60d234a"
     end
     on_intel do
-      url "https://github.com/vmvarela/damas/releases/download/v0.1.8/damas-x86_64-linux"
-      sha256 "4f9bfeb32a622404d905a15353f693b500861009e5b4d9747b2ee3e9fa775084"
+      url "https://github.com/vmvarela/damas/releases/download/v0.1.9/damas-x86_64-linux"
+      sha256 "0b564c4857c0ae8c4df7942695b761617426fae0d64cbf38a0f576b289141eaf"
     end
   end
 
   resource "man" do
-    url "https://github.com/vmvarela/damas/releases/download/v0.1.8/damas.1.gz"
-    sha256 "e28f942e82dabae334857b3e69a95661db3e077b5007d45edb7e90837ecb8606"
+    url "https://github.com/vmvarela/damas/releases/download/v0.1.9/damas.1.gz"
+    sha256 "e1a5a9955ea2e7c1d6239cb51ceae5ac685711eeda0d937cd4a29a453c0c4990"
   end
 
   def install
