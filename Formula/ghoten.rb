@@ -7,21 +7,21 @@
 class Ghoten < Formula
   desc 'Thin OpenTofu distribution with Smart Refresh and native OCI state'
   homepage 'https://github.com/vmvarela/ghoten'
-  version '1.13.1'
+  version '1.13.2'
   license 'MPL-2.0'
 
   if OS.mac? && Hardware::CPU.intel?
     url "https://github.com/vmvarela/ghoten/releases/download/v#{version}/ghoten_#{version}_darwin_amd64.tar.gz"
-    sha256 '86b9754caf62e053c13f7e54c2adb8e1854926845f4e40ee391265fbc9b871f0'
+    sha256 'dc8c0e53edf491a774767561a8075ee484ce369873df8bd3b877f320b1161877'
   elsif OS.mac? && Hardware::CPU.arm?
     url "https://github.com/vmvarela/ghoten/releases/download/v#{version}/ghoten_#{version}_darwin_arm64.tar.gz"
-    sha256 '6a1b76fccab4e372fb142c5c2784fc81c598ea453471626b5bd990f946166b94'
+    sha256 'f30eb91a1ca27cfbaa476668d565ba401c9e174dd4c824c321b23795816cbc90'
   elsif OS.linux? && Hardware::CPU.intel?
     url "https://github.com/vmvarela/ghoten/releases/download/v#{version}/ghoten_#{version}_linux_amd64.tar.gz"
-    sha256 'f536b884d6e7282f9870d7d6164d046060df74c281186aededff3a7224eb0856'
+    sha256 'cee56ce9efd443f38ff8008c63bb801ee781c14690806c497aa2e11634bffc4b'
   elsif OS.linux? && Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
     url "https://github.com/vmvarela/ghoten/releases/download/v#{version}/ghoten_#{version}_linux_arm64.tar.gz"
-    sha256 '2cf36293d9574b18cc9057419203d18beab73f0071be736dc050d2e15206299f'
+    sha256 'b8268750c071bc31eed56f59ba4003ec2d480bcde57b63845d75828a81c2f502'
   else
     odie 'Unsupported platform! ghoten supports macOS (Intel/Apple Silicon) and Linux (amd64/arm64).'
   end
