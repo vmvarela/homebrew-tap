@@ -1,34 +1,34 @@
 class SqlPipe < Formula
   desc "Read CSV from stdin, query with SQL, write CSV to stdout"
   homepage "https://github.com/vmvarela/sql-pipe"
-  version "0.27.0"
+  version "0.27.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.0/sql-pipe-aarch64-macos"
-      sha256 "c2709232a21915d2a77bbe6b38c9e048def836136af4e84d3ba0f30875c6fa08"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.1/sql-pipe-aarch64-macos"
+      sha256 "30364d801b43b0fa1950de9e88035575bfd699ae9ba27d43d47568eca14c52c2"
     end
     on_intel do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.0/sql-pipe-x86_64-macos"
-      sha256 "b9aa0d3bedde925b356b7ccafbcd87e47208d17d6a62172af420658873db1881"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.1/sql-pipe-x86_64-macos"
+      sha256 "da9cb0125bae13f016f6ba72d5ebc58b265134d2f1bcd919008f75f4fd1bc54d"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.0/sql-pipe-aarch64-linux"
-      sha256 "22d5d61b2f5931dcf974367af47b86d3d16baad11a5393338faee8f14bb1d148"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.1/sql-pipe-aarch64-linux"
+      sha256 "60dd0e5e48331cbe47049491f2733cd6ebaedc306365e3eb0a7470c8cdeeeb50"
     end
     on_intel do
-      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.0/sql-pipe-x86_64-linux"
-      sha256 "69bcf5e7d84c1195cdd90a65e88ffd7aa98de9bc2a1e72b565420f61be4baeae"
+      url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.1/sql-pipe-x86_64-linux"
+      sha256 "6a230bbdf1e5ba8cd524eb90a474b6d5f7c6cb9509268744e16ef3578a8fe87d"
     end
   end
 
   resource "man" do
-    url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.0/sql-pipe.1.gz"
-    sha256 "f440aa64aef3995fe2c26b5bfd9a35e7cbff0d6221a147961f74215a20e10018"
+    url "https://github.com/vmvarela/sql-pipe/releases/download/v0.27.1/sql-pipe.1.gz"
+    sha256 "c534a6ff43f8c17c882653b08c222ddd757340f5807c69e2ef290a3f7c6065bc"
   end
 
   def install
