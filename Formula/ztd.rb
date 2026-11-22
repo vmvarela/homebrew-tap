@@ -34,7 +34,7 @@ class Ztd < Formula
   def install
     bin.install Dir["ztd*"].first => "ztd"
     resource("man").stage do
-      man1.install "ztd.1.gz"
+      man1.install Dir["ztd.1*"].first
     end
   end
 
