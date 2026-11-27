@@ -1,33 +1,33 @@
 class Ztd < Formula
   desc "Local task system for humans and agents"
   homepage "https://github.com/vmvarela/ztd"
-  version "0.4.0"
+  version "0.4.1"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/vmvarela/ztd/releases/download/v0.4.0/ztd-aarch64-macos"
-      sha256 "c6380d95a86a984df9d57755fb3dddabe81087db179807c68f52528b3a4a6659"
+      url "https://github.com/vmvarela/ztd/releases/download/v0.4.1/ztd-aarch64-macos"
+      sha256 "1302228fec6ac3b25f1e2c55fce5911ea4ce9400c4722c26463c6c23a729e066"
     end
     on_intel do
-      url "https://github.com/vmvarela/ztd/releases/download/v0.4.0/ztd-x86_64-macos"
-      sha256 "c3ddbe9bce15d2c101c174cc5fde22f0083a196f19a4536d10b8480ebf36a26d"
+      url "https://github.com/vmvarela/ztd/releases/download/v0.4.1/ztd-x86_64-macos"
+      sha256 "13fb55992b8d4c601935dd04337226815f101e10c0d11a5f66bd01e79d0acfcd"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/vmvarela/ztd/releases/download/v0.4.0/ztd-aarch64-linux"
-      sha256 "6e04d659941f886db45ef9e57d88f3059225e2d593e1e6d65154934685f83393"
+      url "https://github.com/vmvarela/ztd/releases/download/v0.4.1/ztd-aarch64-linux"
+      sha256 "295bf86f43b21f8eb13cde04cd909893474dde0cb90ab5d1fb98ec1a998daeee"
     end
     on_intel do
-      url "https://github.com/vmvarela/ztd/releases/download/v0.4.0/ztd-x86_64-linux"
-      sha256 "8fe024547b1f46b410d136444f15d55a6e40e2a148e791ac831e28b65508466e"
+      url "https://github.com/vmvarela/ztd/releases/download/v0.4.1/ztd-x86_64-linux"
+      sha256 "40a8ef206696110db0016c358decce0c7edede977cb3217a31224e2b446321e5"
     end
   end
 
   resource "man" do
-    url "https://github.com/vmvarela/ztd/releases/download/v0.4.0/ztd.1.gz"
+    url "https://github.com/vmvarela/ztd/releases/download/v0.4.1/ztd.1.gz"
     sha256 "f84d914bbb9c67b78505bc269fd52028557f04336dba190f9d4e48030e6b1b95"
   end
 
